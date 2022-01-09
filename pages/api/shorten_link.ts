@@ -1,6 +1,5 @@
 import { connectToDatabase } from "./_connector";
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default async (req, res) => {
   const db = await connectToDatabase();
 
@@ -15,6 +14,7 @@ export default async (req, res) => {
       short_link: `${process.env.VERCEL_URL}/r/${entry.insertedId}`,
     });
   }
+
   res.statusCode = 409;
   res.json({ error: "no_link_found", error_description: "No link found" });
 };
